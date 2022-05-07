@@ -1,12 +1,16 @@
 package com.salah;
 
-public class SumUpExample {
+public class WhyThreadsDemo {
+    public static void main(String[] args) throws InterruptedException {
+        WhyThreadsDemo.runTest();
+    }
+
     long startRange;
     long endRange;
     long counter = 0;
     static long MAX_NUM = Integer.MAX_VALUE;
 
-    public SumUpExample(long startRange, long endRange) {
+    public WhyThreadsDemo(long startRange, long endRange) {
         this.startRange = startRange;
         this.endRange = endRange;
     }
@@ -21,8 +25,8 @@ public class SumUpExample {
     static public void twoThreads() throws InterruptedException {
 
         long start = System.currentTimeMillis();
-        SumUpExample s1 = new SumUpExample(1, MAX_NUM / 2);
-        SumUpExample s2 = new SumUpExample(1 + (MAX_NUM / 2), MAX_NUM);
+        WhyThreadsDemo s1 = new WhyThreadsDemo(1, MAX_NUM / 2);
+        WhyThreadsDemo s2 = new WhyThreadsDemo(1 + (MAX_NUM / 2), MAX_NUM);
 
         Thread t1 = new Thread(() -> {
             s1.add();
@@ -46,7 +50,7 @@ public class SumUpExample {
     static public void oneThread() {
 
         long start = System.currentTimeMillis();
-        SumUpExample s = new SumUpExample(1, MAX_NUM );
+        WhyThreadsDemo s = new WhyThreadsDemo(1, MAX_NUM );
         s.add();
         long end = System.currentTimeMillis();
         System.out.println("Single thread final count = " + s.counter + " took " + (end - start));
